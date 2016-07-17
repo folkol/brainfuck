@@ -25,4 +25,22 @@ public class InterpreterTest
 
         Assert.assertEquals("Hello, world!", baos.toString());
     }
+
+    @Test
+    public void helloWorldWithBranch()
+        throws Exception
+    {
+        byte[] program = (
+            "+++++++[>++++++++++<-]>++." +
+            "+++++++++++++++++++++++++++++.+++++++..+++.------------------------------" +
+            "-------------------------------------.------------.++++++++++++++++++++++" +
+            "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.-------" +
+            "-.+++.------.--------.---------------------------------------------------" +
+            "----------------.").getBytes();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        Interpreter.exec(program, null, new PrintStream(baos));
+
+        Assert.assertEquals("Hello, world!", baos.toString());
+    }
 }

@@ -41,9 +41,17 @@ public class Interpreter
                     cells[dp] = in.read();
                     break;
                 case '[':
-                    throw new RuntimeException("Not yet implemented!");
+                    if (cells[dp] == 0) {
+                        while (program[pc] != ']') {
+                            pc++;
+                        }
+                    }
+                    break;
                 case ']':
-                    throw new RuntimeException("Not yet implemented!");
+                    while (program[pc] != '[') {
+                        pc--;
+                    }
+                    continue;
             }
             pc++;
         }
