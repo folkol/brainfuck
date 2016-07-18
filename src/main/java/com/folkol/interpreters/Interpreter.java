@@ -42,14 +42,26 @@ public class Interpreter
                     break;
                 case '[':
                     if (cells[dp] == 0) {
-                        while (program[pc] != ']') {
-                            pc++;
+                        int nesting = 0;
+                        while (program[++pc] != ']' || nesting > 0) {
+                            if (program[pc] == '[') {
+                                nesting++;
+                            }
+                            if (program[pc] == ']') {
+                                nesting--;
+                            }
                         }
                     }
                     break;
                 case ']':
-                    while (program[pc] != '[') {
-                        pc--;
+                    int nesting = 0;
+                    while (program[--pc] != '[' || nesting > 0) {
+                        if (program[pc] == ']') {
+                            nesting++;
+                        }
+                        if (program[pc] == '[') {
+                            nesting--;
+                        }
                     }
                     continue;
             }
